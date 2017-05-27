@@ -1,5 +1,5 @@
 # Evidencias de programación en Java
-![java](/images/2017/06/java.png)
+![java](/imagenes/java.png)
 
 Programación orientada a objetos 1, Evidencias de actividades :book:
 
