@@ -1,3 +1,15 @@
+/**
+ * @Author: Luis Ángel De Santiago Guerrero <angelguerrero>
+ * @Date:   2017-07-25T22:15:31-05:00
+ * @Email:  _angelguerrero_@outlook.com
+ * @Filename: DoublyLinkedList.java
+ * @Last modified by:   angelguerrero
+ * @Last modified time: 2017-07-30T15:06:59-05:00
+ * @License: MIT
+ */
+
+
+
 package tda;
 
 public class DoublyLinkedList {

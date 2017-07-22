@@ -1,3 +1,15 @@
+/**
+ * @Author: Luis Ángel De Santiago Guerrero <angelguerrero>
+ * @Date:   2017-07-27T13:12:34-05:00
+ * @Email:  _angelguerrero_@outlook.com
+ * @Filename: Queue.java
+ * @Last modified by:   angelguerrero
+ * @Last modified time: 2017-07-30T15:06:50-05:00
+ * @License: MIT
+ */
+
+
+
 package tda;
 
 public class Queue {

@@ -1,3 +1,15 @@
+/**
+ * @Author: Luis Ángel De Santiago Guerrero <angelguerrero>
+ * @Date:   2017-07-25T22:08:41-05:00
+ * @Email:  _angelguerrero_@outlook.com
+ * @Filename: DynamicMemory.java
+ * @Last modified by:   angelguerrero
+ * @Last modified time: 2017-07-30T17:07:52-05:00
+ * @License: MIT
+ */
+
+
+
 package tda;
 
 import static java.lang.Integer.parseInt;
@@ -5,22 +17,23 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
-public class Main {
+public class DynamicMemory {
 
-  public static Scanner scanner = new Scanner(System.in);
+  public Scanner scanner = new Scanner(System.in);
 
-  public static DoublyLinkedList doublylist = new DoublyLinkedList();
+  public DoublyLinkedList doublylist = new DoublyLinkedList();
 
-  public static Stack stack = new Stack();
+  public Stack stack = new Stack();
 
-  public static Queue queue = new Queue();
+  public Queue queue = new Queue();
 
 
   public static void main(String[] args) {
-    menu();
+    DynamicMemory program = new DynamicMemory();
+    program.menu();
   }
 
-  public static void menu()
+  public void menu()
   {
     int choice = 0;
     String options =
@@ -49,7 +62,7 @@ public class Main {
     }
   }
 
-  public static void dllMenu()
+  public void dllMenu()
   {
     int choice = 0;
     int n = 0;
@@ -127,7 +140,7 @@ public class Main {
     }
   }
 
-  public static void stackMenu()
+  public void stackMenu()
   {
     int choice = 0;
     int n = 0;
@@ -184,7 +197,7 @@ public class Main {
     }
   }
 
-  public static void queueMenu()
+  public void queueMenu()
   {
     int choice = 0;
     int n = 0;
@@ -235,7 +248,7 @@ public class Main {
     }
   }
 
-  private static int input(String message)
+  private int input(String message)
   {
     int choice = 0;
     String response;
@@ -254,7 +267,7 @@ public class Main {
        }
 
     } while (choice == -1);
-   
+
     return choice;
   }
 }
