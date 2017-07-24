@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#define ESPANOL locale::global(locale("spanish"))
+#define SPANISH locale::global(locale("spanish"))
 
 int main()
 {
@@ -10,7 +10,7 @@ int main()
 	int r = 0;
 	int limit = 0;
 
-	ESPANOL;
+	SPANISH;
 	cout << "Ingresa el límite: ";
 	cin >> limit;
 

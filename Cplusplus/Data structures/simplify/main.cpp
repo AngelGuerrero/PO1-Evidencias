@@ -4,7 +4,7 @@
 using namespace std;
 
 //Global variables
-#define ESPANOL locale::global(locale("spanish"))
+#define SPANISH locale::global(locale("spanish"))
 int divider = 2;
 
 // Prototype
@@ -16,7 +16,7 @@ int main()
 {
 	double num, den;
 
-	ESPANOL;
+	SPANISH;
 
 	cout << "Ingrese el numerador: ";
 	cin >> num;

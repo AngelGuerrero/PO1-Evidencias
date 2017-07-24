@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#define ESPANOL locale::global(locale("spanish"))
+#define SPANISH locale::global(locale("spanish"))
 
 //Global variables
 int arrayLength;
@@ -12,7 +12,7 @@ int max(int *, int);
 
 int main()
 {
-	ESPANOL;
+	SPANISH;
 
 	cout << "Ingresa el máximo de números a ingresar: ";
 	cin >> arrayLength;
