@@ -1,3 +1,4 @@
+package tda;
 
 public class DoublyLinkedList {
 
@@ -18,8 +19,8 @@ public class DoublyLinkedList {
   public boolean add(int data) {
     boolean val = false;
 
-    try {
-
+    try
+    {
       Node el = new Node(data, null, null);
 
       if (isEmpty())
@@ -36,9 +37,10 @@ public class DoublyLinkedList {
       size++;
       val = true;
 
-    } catch (OutOfMemoryError e) {
+    }
+    catch (OutOfMemoryError e)
+    {
       System.out.println("Error: insufficient space to allocate the object: " + e.getMessage());
-      val = false;
     }
 
     return val;
@@ -48,8 +50,8 @@ public class DoublyLinkedList {
   {
     boolean val = false;
 
-    try {
-
+    try
+    {
       Node el = new Node(data, null, null);
 
       if (isEmpty())
@@ -61,11 +63,13 @@ public class DoublyLinkedList {
         el.next = first;
         first.prev = el;
         first = el;
-        size++;
       }
+      size++;
       val = true;
 
-    } catch (OutOfMemoryError e) {
+    }
+    catch (OutOfMemoryError e)
+    {
       System.out.println("Error: insufficient space to allocate the object: " + e.getMessage());
       val = false;
     }
@@ -73,9 +77,9 @@ public class DoublyLinkedList {
     return val;
   }
 
-  public boolean show()
+  public String show()
   {
-    boolean val = false;
+    String val = "";
 
     if (size != 0)
     {
@@ -83,78 +87,91 @@ public class DoublyLinkedList {
 
       while (iterator != null)
       {
-        System.out.print(iterator.getData() + ",");
+        val += iterator.getData() + ", ";
         iterator = iterator.next;
       }
-      System.out.println();
-
-      val = true;
+    }
+    else
+    {
+      val = "Lista vacía";
     }
 
     return val;
   }
 
-  public boolean showReverse()
+  public String showReverse()
   {
-    boolean val = false;
+    String val = "";
 
     if (size > 0)
     {
       iterator = last;
       while (iterator != null)
       {
-        System.out.print(iterator.getData() + ",");
+        val += iterator.getData() + ", ";
         iterator = iterator.prev;
       }
-      System.out.println();
-
-      val = true;
+    }
+    else
+    {
+      val = "Lista vacía";
     }
 
     return val;
   }
 
-  public boolean remove(int index)
+  public String remove(int index)
   {
-    boolean val = false;
 
-    if (index >= 0 && index <= size)
+    String val = "";
+
+    if ( isEmpty() )
     {
-      // Remove first element
-      if (index == 0)
+      val = "Lista vacía";
+    }
+    else
+    {
+      if (index >= 1 && index <= size)
       {
-        val = removeFirst();
+        // Remove first element
+        if (index == 0)
+        {
+          val = removeFirst();
+        }
+        // Remove last element
+        else if (index == size)
+        {
+          val = removeLast();
+        }
+        // Remove another element
+        else
+        {
+          iterator = first;
+          for (int i = 0; i < index; i++)
+          {
+            iterator = iterator.next;
+          }
+
+          iterator.prev.next = iterator.next;
+          iterator.next.prev = iterator.prev;
+
+          val = "Elemento: " + iterator.getData() + " eliminado";
+          iterator = iterator.prev = iterator.next = null;
+          size--;
+        }
       }
-      // Remove last element
-      else if (index == size)
-      {
-        val = removeLast();
-      }
-      // Remove another element
       else
       {
-        iterator = first;
-        for (int i = 0; i < index; i++)
-        {
-          iterator = iterator.next;
-        }
-
-        Node temp = iterator.prev;
-        iterator.next.prev = temp;
-        temp.next = iterator.next;
-        temp = iterator = iterator.prev = iterator.next = null;
-        size--;
-
-        val = true;
+        val = "El índice no coincide con ningún elemento";
       }
     }
 
     return val;
   }
 
-  public boolean removeFirst()
+  public String removeFirst()
   {
-    boolean val = false;
+    String val = "La lista está vacía";
 
     if (!isEmpty())
     {
@@ -168,17 +185,17 @@ public class DoublyLinkedList {
         first = first.next;
         first.prev = null;
         temp = temp.next = null;
-        val = true;
       }
+      val = "Elemento eliminado";
       size--;
     }
 
     return val;
   }
 
-  public boolean removeLast()
+  public String removeLast()
   {
-    boolean val = false;
+    String val = "La lista está vacía";
 
     if (!isEmpty())
     {
@@ -192,17 +209,17 @@ public class DoublyLinkedList {
         last = last.prev;
         last.next = null;
         temp = temp.prev = null;
-        val = true;
       }
+      val = "Elemento eliminado";
       size--;
     }
 
     return val;
   }
 
-  public boolean removeAll()
+  public String removeAll()
   {
-    boolean val = false;
+    String val = "Lista vacía";
 
     if (size > 0)
     {
@@ -212,7 +229,7 @@ public class DoublyLinkedList {
         last = last.prev;
       }
       size = 0;
-      val = true;
+      val = "Lista eliminada";
     }
 
     return val;
