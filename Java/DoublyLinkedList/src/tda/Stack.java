@@ -2,8 +2,8 @@ package tda;
 
 public class Stack {
   // Attributes
-  private Node top;
-  private int size;
+  private Node top;   // Obtiene el elemento de la cima
+  private int size;   // Obtiene la longitud de la pila
 
   // Stack Constructor
   public Stack()
@@ -12,6 +12,15 @@ public class Stack {
     size = 0;
   }
 
+  /**
+   * Apila un nuevo elemento
+   *
+   * Devuelve true si el elemento fue agregado, y false si falla
+   *
+   * @param  int data          Elemento para agregar a la pila
+   *
+   * @return     boolean
+   */
   public boolean push(int data)
   {
     boolean val = false;
@@ -35,6 +44,13 @@ public class Stack {
     return val;
   }
 
+  /**
+   * Saca un elemento de la pila
+   *
+   * Específicamente el elemento de la cima
+   *
+   * @return String     Devuelve el elemento que ha sacado
+   */
   public String pop()
   {
     String val = "Pila vacía";
@@ -52,6 +68,11 @@ public class Stack {
     return val;
   }
 
+  /**
+   * Muestra la pila
+   *
+   * @return String     Devuelve el contenido de la pila
+   */
   public String show()
   {
     String val = "Pila vacía";
@@ -70,6 +91,11 @@ public class Stack {
     return val;
   }
 
+  /**
+   * Obtiene el elemento de la cima
+   *
+   * @return String
+   */
   public String getTop()
   {
     String val = "Pila vacía";
@@ -82,6 +108,11 @@ public class Stack {
     return val;
   }
 
+  /**
+   * Elimina toda la lista
+   *
+   * @return String Devuelve un mensaje si la lista ha sido eliminada
+   */
   public String removeAll()
   {
     String val = "Pila vacía";
@@ -103,6 +134,14 @@ public class Stack {
   public int getSize() { return size; }
 
 
+  /*
+  |-------------------------------------------------------------------
+  | Helper de clase Stack Nodo
+  |-------------------------------------------------------------------
+  |
+  | La siguiente clase es un helper para realizar los nodos
+  |
+  */
   private class Node {
     // Attributes
     private int data;

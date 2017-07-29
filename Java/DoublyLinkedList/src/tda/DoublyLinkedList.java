@@ -3,10 +3,10 @@ package tda;
 public class DoublyLinkedList {
 
   // Attributes
-  private int size;
-  private Node first;
-  private Node last;
-  private Node iterator;
+  private int size;       // Longitud de la lista
+  private Node first;     // Apunta el primer elemento
+  private Node last;      // Apunta al último elemento
+  private Node iterator;  // Usado para recorrer los elementos
 
   // Constructor
   public DoublyLinkedList() {
@@ -15,7 +15,14 @@ public class DoublyLinkedList {
     this.last = null;
   }
 
-  // Methods
+  /*
+  |-------------------------------------------------------------------
+  | Métodos
+  |-------------------------------------------------------------------
+  |
+  | Los siguientes son métodos pertenecientes a DoublyLinkedList
+  |
+  */
   public boolean add(int data) {
     boolean val = false;
 
@@ -46,6 +53,15 @@ public class DoublyLinkedList {
     return val;
   }
 
+  /**
+   * Agrega un elemento al inicio de la lista
+   *
+   * Devuelve true si el elemento se ha almacenado y false si no.
+   *
+   * @param  int data          nuevo elemento a almacenar
+   *
+   * @return     boolean
+   */
   public boolean addFirst(int data)
   {
     boolean val = false;
@@ -77,6 +93,14 @@ public class DoublyLinkedList {
     return val;
   }
 
+  /**
+   * Muestra la lista
+   *
+   * Devuelve un mensaje con los elementos de la lista o si la lista
+   * está vacía.
+   *
+   * @return String
+   */
   public String show()
   {
     String val = "";
@@ -99,6 +123,15 @@ public class DoublyLinkedList {
     return val;
   }
 
+  /**
+   * Muestra la lista de forma que el último elemento agregado
+   * se muestre el principio
+   *
+   * Devuelve un mensaje con el resultado de la lista o si la lista
+   * se encuentra vacía
+   *
+   * @return String
+   */
   public String showReverse()
   {
     String val = "";
@@ -120,6 +153,15 @@ public class DoublyLinkedList {
     return val;
   }
 
+  /**
+   * Elimina un elemento de la lista
+   *
+   * Devuelve un mensaje indicando el resultado de la operación.
+   *
+   * @param  int index         índice del elemento a eliminar
+   *
+   * @return     String
+   */
   public String remove(int index)
   {
 
@@ -146,6 +188,14 @@ public class DoublyLinkedList {
         // Remove another element
         else
         {
+          /*
+          |-------------------------------------------------------------------
+          | El iterador se posiciona bajo el elemento a buscar,
+          | cuando lo encuentra hace que los punteros previos y siguientes
+          | salten a este mismo elemento.
+          |-------------------------------------------------------------------
+          */
+
           iterator = first;
           for (int i = 0; i < index; i++)
           {
@@ -169,6 +219,13 @@ public class DoublyLinkedList {
     return val;
   }
 
+  /**
+   * Elimina el primer elemento de la lista
+   *
+   * Devuelve un mensaje si el elemento ha sido eliminado o no
+
+   * @return String
+   */
   public String removeFirst()
   {
     String val = "La lista está vacía";
@@ -193,6 +250,13 @@ public class DoublyLinkedList {
     return val;
   }
 
+  /**
+   * Elimina el último elemento de la lista
+   *
+   * Devuelve un mensaje si el elemento ha sido eliminado o no
+   *
+   * @return String
+   */
   public String removeLast()
   {
     String val = "La lista está vacía";
@@ -217,6 +281,14 @@ public class DoublyLinkedList {
     return val;
   }
 
+  /**
+   * Elimina todos los elementos de la lista
+   *
+   * Devuelve un mensaje indicando que la lista
+   * ha sido eliminada.
+   *
+   * @return String
+   */
   public String removeAll()
   {
     String val = "Lista vacía";
@@ -244,9 +316,14 @@ public class DoublyLinkedList {
   public boolean isEmpty() { return size == 0; }
 
 
-  /**
-   * Helper class Node
-   */
+  /*
+  |-------------------------------------------------------------------
+  | Helper de clase DoublyLinkedList Nodo
+  |-------------------------------------------------------------------
+  |
+  | La siguiente clase es un helper para realizar los nodos
+  |
+  */
   private class Node {
     // Attributes
     private int data;

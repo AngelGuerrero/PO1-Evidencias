@@ -1,16 +1,26 @@
 package tda;
 
 public class Queue {
-  private Node first;
-  private Node last;
-  private int size;
+  // Attributes
+  private Node first; // Nodo que apunta al primer elemento
+  private Node last;  // Nodo que apunta al último elemento
+  private int size;   // Longitud de la fila
 
+  // Constructor
   public Queue ()
   {
     first = null;
     size = 0;
   }
 
+  /**
+   * Agregar un nuevo elemento a la fila
+   *
+   * @param  int data          elemento a agregar
+   *
+   * @return     boolean Devuelve true si se agrega el elemento, y
+   *             false si falla.
+   */
   public boolean add(int data)
   {
     boolean val = false;
@@ -39,6 +49,11 @@ public class Queue {
     return val;
   }
 
+  /**
+   * Muestra los elementos de la fila
+   *
+   * @return String  Devuelve los elementos en forma de String
+   */
   public String show()
   {
     String val = "Cola vacía";
@@ -58,6 +73,11 @@ public class Queue {
     return val;
   }
 
+  /**
+   * Elimina la fila completa
+   *
+   * @return String Devuele los elementos que han sido borrados
+   */
   public String removeAll()
   {
     String val = "Cola vacía";
@@ -73,6 +93,13 @@ public class Queue {
     return val;
   }
 
+  /**
+   * Procesa los elementos que están al principio de la fila,
+   * es decir, procesa el elemento que ha llegado primero,
+   * y después lo quita de la fila
+   *
+   * @return String Devuelve el elemento procesado
+   */
   public String process()
   {
     String val = "Cola vacía";
@@ -102,6 +129,14 @@ public class Queue {
   public boolean isEmpty() { return size == 0; }
 
 
+  /*
+  |-------------------------------------------------------------------
+  | Helper de clase Queue Nodo
+  |-------------------------------------------------------------------
+  |
+  | La siguiente clase es un helper para realizar los nodos
+  |
+  */
   private class Node {
     private int data;
     public Node next;
