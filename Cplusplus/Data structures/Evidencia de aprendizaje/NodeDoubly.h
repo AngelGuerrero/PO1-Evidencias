@@ -1,3 +1,15 @@
+/**
+* @Author: Luis Ángel De Santiago Guerrero
+* @Date:   2017-08-01T05:08:10-05:00
+* @Email:  _angelguerrero_@outlook.com
+* @Filename: NodeDoubly.h
+* @Last modified by:   Luis Ángel De Santiago Guerrero
+* @Last modified time: 2017-08-04T16:10:45-05:00
+* @License: MIT
+*/
+
+
+
 #pragma once
 #include "Node.h"
 

@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{09A41665-1AD1-4D3C-9BF8-CBF1B83C73BB}</ProjectGuid>
+    <ProjectGuid>{0B78AA60-5E93-47BC-A391-59F67427EC34}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Evidenciadeaprendizaje</RootNamespace>
+    <RootNamespace>Doublelinkedlist</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -140,14 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DoublyLinkedList.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="NodeDoubly.h" />
-    <ClInclude Include="Queue.h" />
-    <ClInclude Include="rlutil.h" />
-    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

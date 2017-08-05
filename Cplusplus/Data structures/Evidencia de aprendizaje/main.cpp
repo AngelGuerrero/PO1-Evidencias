@@ -11,6 +11,7 @@
 
 #include "rlutil.h"
 #include "Stack.h"
+#include "Queue.h"
 #include "DoublyLinkedList.h"
 
 #include <ctime>
@@ -26,17 +27,16 @@ using namespace std;
 | Definitions
 |-------------------------------------------------------------------
 */
-//		----- Screen -----
+//     ----- Screen -----
 #define SPANISH     std::locale::global(std::locale("spanish"))		// Show the tildes in spanish
 #define PAUSE       system("pause")
 #define WAIT        rlutil::msleep(2500)
 #define CLEAR       system("cls")
 #define CENTER      rlutil::locate((rlutil::tcols() / 4), rlutil::trows() / 2)
-#define	JUSTIFIED   gotoxy((2),(trows() / 8))
 #define NORMAL_POS  rlutil::locate(0, 0);
 #define HIDE_CURSOR rlutil::hidecursor()
 #define SHOW_CURSOR rlutil::showcursor()
-//		----- Colors -----
+//     ----- Colors -----
 #define RED      rlutil::setColor(4)
 #define CYAN     rlutil::setColor(rlutil::CYAN);
 #define GREEN    rlutil::setColor(2)
@@ -44,18 +44,11 @@ using namespace std;
 #define YELLOW   rlutil::setColor(14)
 #define MAGENTA  rlutil::setColor(5)
 #define SKYBLUE  rlutil::setColor(11)
-//		----- Keyboard definitions -----
-#define KEY_ZERO	  48
+//     ----- Keyboard definitions -----
 #define	KEY_ONE		  49
 #define KEY_TWO		  50
 #define KEY_THREE	  51
 #define	KEY_FOUR	  52
-#define KEY_FIVE	  53
-#define KEY_SIX		  54
-#define KEY_SEVEN	  55
-#define KEY_EIGHT	  56
-#define KEY_NINE	  57
-#define KEY_TAB		  9
 #define KEY_LEFT	  16
 
 
@@ -91,7 +84,7 @@ namespace dynamic
 
 /*
 |-------------------------------------------------------------------
-| Prototype functions
+| Prototype functions for postfix
 |-------------------------------------------------------------------
 */
 
@@ -116,11 +109,6 @@ void merge();
 void demoPrefix();
 
 //
-//  Main menu
-// 
-void menu();
-
-//
 //  This function is a helper for get 
 //  the hierarchy between symbols
 //
@@ -131,6 +119,33 @@ int compare(char);
 //  enter his expression
 //
 void newExpression();
+
+/*
+|-------------------------------------------------------------------
+| Prototype functions for BurgerT.com program
+|-------------------------------------------------------------------
+*/
+
+//
+//  Submenu for request the food
+//
+void submenu();
+
+//
+//  Seve the clients
+//
+void serve(string);
+
+// 
+//  Simple menu for show the options
+// 
+void menu();
+
+//
+//  Simple function to show the author info
+// 
+void info();
+
 
 /*
 |-------------------------------------------------------------------
@@ -147,33 +162,11 @@ int main()
 }
 
 
+
+
 // -----------------------------------------------------------------
-// Implementations
+// Implementations for postfix program
 // -----------------------------------------------------------------
-void newExpression()
-{
-  string enter = "";
-
-  SPANISH;
-  CLEAR;
-  SHOW_CURSOR;
-  WHITE;
-  puts("\t\t\t\Nueva expresión\n\n\n");
-  cout << "Ingresa la expresión a evaluar: ";
-  cin >> enter;
-  cout << "\nExpresión a evaluar: " << enter << endl;
-
-  postfix(enter);
-
-  cout << "\nExpresión postfija: "; showOutput();
-
-  CYAN;
-  rlutil::locate(1, rlutil::trows() - 2);
-  PAUSE;
-
-  ;
-}
-
 void postfix(string s)
 {
   char *expression = new char[s.size()];
@@ -258,6 +251,30 @@ void postfix(string s)
   }
 }
 
+void newExpression()
+{
+  string enter = "";
+
+  SPANISH;
+  CLEAR;
+  SHOW_CURSOR;
+  WHITE;
+  puts("\t\t\tNueva expresión\n\n\n");
+  cout << "Ingresa la expresión a evaluar: ";
+  cin >> enter;
+  cout << "\nExpresión a evaluar: " << enter << endl;
+
+  postfix(enter);
+
+  cout << "\nExpresión postfija: "; showOutput();
+
+  CYAN;
+  rlutil::locate(1, rlutil::trows() - 2);
+  PAUSE;
+
+  ;
+}
+
 int compare(char param)
 {
   switch (param)
@@ -320,7 +337,7 @@ void demoPrefix()
   CLEAR;
   HIDE_CURSOR;
   YELLOW;
-  puts("\t\t\tDemo de expresión postfija\n");
+  puts("\n\t\t\tDemo de expresión postfija\n");
   WHITE;
   cout << "Expresión infija a convertir: " << str[numrand] << endl;
   postfix(str[numrand]);
@@ -331,6 +348,99 @@ void demoPrefix()
   PAUSE;
 }
 
+
+// -----------------------------------------------------------------
+// Implementations for BurgerT.com program
+// -----------------------------------------------------------------
+void submenu()
+{
+  SPANISH;
+  CLEAR;
+  HIDE_CURSOR;
+  YELLOW;
+  puts("\n\t\t\tMenú de BurgerT.com\n\n");
+
+  WHITE;
+  puts("[1] \tPedir hamburguesa");
+  puts("[2] \tPedir papas fritas");
+  puts("[3] \tPedir refresco");
+  CYAN;
+  rlutil::locate(1, rlutil::trows() - 2);
+  puts("<=[Tecla izquierda] Para regresar");
+
+  switch (rlutil::getkey())
+  {
+  case KEY_ONE: serve("Hamburguesa sencilla");  break;
+
+  case KEY_TWO: serve("Papas fritas"); break;
+
+  case KEY_THREE: serve("Refresco normal"); break;
+
+    // return the main menu
+  case KEY_LEFT: menu();  break;
+
+  default: submenu(); break;
+  }
+}
+
+void serve(string product)
+{
+  Queue<int> queue;
+
+  int numrand;
+
+  int turn;
+
+  do
+  {
+
+    numrand = rand() % 30 + 1;
+    turn = rand() % 7 + 1;
+
+  } while (turn > numrand);
+
+  for (size_t i = 1; i < numrand; i++)
+  {
+    queue.add(i);
+  }
+
+  SPANISH;
+  CLEAR;
+  SHOW_CURSOR;
+  GREEN;
+  puts("\n\t\t\tSirviendo los pedidos\n\n");
+  CYAN;
+  cout << " Tienes el turno número: " << turn << endl << endl;
+  WHITE;
+  cout << " Hay " << queue.getSize() << " personas esperando" << endl << endl;
+
+  int limit = queue.getSize();
+  for (size_t i = 0; i <= limit; i++)
+  {
+    if (queue.getFirst() == turn)
+    {
+      GREEN;
+      cout << " \n\t¡Tu pedido: " << product << " está servido!\n\n" << endl;
+      break;
+    }
+    cout << "\tAtendiendo al cliente número: " << queue.process();
+    for (size_t i = 0; i < (rand() % 20 + 1); i++)
+    {
+      Sleep(500);
+      cout << ".";
+    }
+    cout << endl;
+  }
+
+  WHITE;
+  PAUSE;
+  menu();
+}
+
+
+// -----------------------------------------------------------------
+// Implementations of other functions
+// -----------------------------------------------------------------
 void menu()
 {
 
@@ -338,25 +448,20 @@ void menu()
   CLEAR;
   HIDE_CURSOR;
   YELLOW;
-  puts("\t\t\t\tMenú");
+  puts("\n\t\t\t\tMenú");
 
   WHITE;
   puts("[1] \tPrograma BurgerT.com");
   puts("[2] \tConversión de expresión infija a postfija");
   puts("[3] \tDemo conversion de expresiones");
-  puts("[4] \tDemo programa BurgerT.com");
-
+  puts("[4] \tInformación");
   CYAN;
   rlutil::locate(1, rlutil::trows() - 2);
   puts("ESCAPE para salir");
 
   switch (rlutil::getkey())
   {
-  case KEY_ONE:
-    CLEAR;
-    CENTER;
-    menu();
-    break;
+  case KEY_ONE: submenu(); break;
 
   case KEY_TWO: {
     newExpression();
@@ -368,8 +473,7 @@ void menu()
     menu();
   } break;
 
-  case KEY_FOUR:
-    break;
+  case KEY_FOUR: info(); menu(); break;
 
   case rlutil::KEY_ESCAPE: // Exit
     CLEAR;
@@ -382,4 +486,19 @@ void menu()
     menu();
     break;
   }
+}
+
+void info()
+{
+  SPANISH;
+  CLEAR;
+  WHITE;
+  CENTER;
+  cout << "\n\tAutor: Luis Ángel De Santiago Guerrero\n" << endl;
+  cout << "\tMatrícula: ES1611300455" << endl;
+  cout << "\tContacto: angelguerrero@nube.unadmexico.mx" << endl;
+  cout << "\tIngeniería en Desarrollo de Software" << endl;
+  cout << "\tUniversidad Abierta y a Distancia de México" << endl;
+  cout << "\n\n" << endl;
+  PAUSE; 
 }

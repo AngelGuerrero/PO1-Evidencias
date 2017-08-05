@@ -1,15 +1,26 @@
+/**
+* @Author: Luis Ángel De Santiago Guerrero
+* @Date:   2017-08-01T05:08:10-05:00
+* @Email:  _angelguerrero_@outlook.com
+* @Filename: DoublyLinkedList.h
+* @Last modified by:   Luis Ángel De Santiago Guerrero
+* @Last modified time: 2017-08-04T16:10:45-05:00
+* @License: MIT
+*/
+
+
+
 #pragma once
 #include "NodeDoubly.h"
 
 template <class T>
 class DoublyLinkedList
 {
+  NodeDoubly<T> *_first;
+  NodeDoubly<T> *_last;
   int _size;
 
 public:
-  NodeDoubly<T> *first;
-  NodeDoubly<T> *last;
-
   DoublyLinkedList();
   ~DoublyLinkedList() {};
 
@@ -28,16 +39,20 @@ public:
   bool isEmpty();
 };
 
-//DoublyLinkedList Methods
+//
+//  DoublyLinkedList Methods
+//
 template <class T>
 DoublyLinkedList<T>::DoublyLinkedList()
 {
-  this->first = nullptr;
-  this->last = nullptr;
+  this->_first = nullptr;
+  this->_last = nullptr;
   this->_size = 0;
 }
 
-// Add new element
+// 
+//  Add new element
+//
 template <class T>
 bool DoublyLinkedList<T>::add(T data)
 {
@@ -47,16 +62,16 @@ bool DoublyLinkedList<T>::add(T data)
 
   if (isEmpty())
   {
-    first = last = el;
+    _first = _last = el;
 
     val = true;
     this->_size++;
   }
   else
   {
-    last->next = el;
-    el->prev = last;
-    last = el;
+    _last->next = el;
+    el->prev = _last;
+    _last = el;
 
     val = true;
     this->_size++;
@@ -65,7 +80,9 @@ bool DoublyLinkedList<T>::add(T data)
   return val;
 }
 
-// Add an element to the top
+//
+//  Add an element to the top
+// 
 template <class T>
 bool DoublyLinkedList<T>::addFirst(T data)
 {
@@ -75,16 +92,16 @@ bool DoublyLinkedList<T>::addFirst(T data)
 
   if (isEmpty())
   {
-    first = last = el;
+    _first = _last = el;
 
     val = true;
     this->_size++;
   }
   else
   {
-    el->next = first;
-    first->prev = el;
-    first = el;
+    el->next = _first;
+    _first->prev = el;
+    _first = el;
 
     val = true;
     this->_size++;
@@ -93,11 +110,13 @@ bool DoublyLinkedList<T>::addFirst(T data)
   return val;
 }
 
-// Get all elements
+//
+//  Get all elements
+//
 template <class T>
 T * DoublyLinkedList<T>::getAll()
 {
-  NodeDoubly<T> *iterator = first;
+  NodeDoubly<T> *iterator = _first;
 
   T *theArray = new T[this->_size];
 
@@ -110,7 +129,9 @@ T * DoublyLinkedList<T>::getAll()
   return theArray;
 }
 
-// Get the data from the last element
+//
+//  Get the data from the last element
+// 
 template <class T>
 T DoublyLinkedList<T>::getLast()
 {
@@ -118,30 +139,36 @@ T DoublyLinkedList<T>::getLast()
 
   if (! isEmpty() )
   {
-    el = last->getData();
+    el = _last->getData();
   }
   
   return el;
 }
 
-// Get the data from the first element
+//
+//  Get the data from the first element
+//
 template <class T>
 T DoublyLinkedList<T>::getFirst()
 {
   T el = T();
   if (! isEmpty() )
   {
-    el = first->getData();
+    el = _first->getData();
   }
   
   return el;
 }
 
-// Get the size
+//
+//  Get the size
+//
 template <class T>
 int DoublyLinkedList<T>::getSize() { return this->_size; }
 
-// Remove everything
+//
+//  Remove everything
+//
 template <class T>
 bool DoublyLinkedList<T>::removeAll()
 {
@@ -149,7 +176,7 @@ bool DoublyLinkedList<T>::removeAll()
 
   if ( ! isEmpty() )
   {
-    while (first != nullptr)
+    while (_first != nullptr)
     {
       removeFirst();
     }
@@ -159,7 +186,9 @@ bool DoublyLinkedList<T>::removeAll()
   return val;
 }
 
-// Remove the last element
+// 
+//  Remove the last element
+// 
 template <class T>
 bool DoublyLinkedList<T>::removeLast()
 {
@@ -169,7 +198,7 @@ bool DoublyLinkedList<T>::removeLast()
   {
     if (this->_size == 1)
     {
-      first = last = nullptr;
+      _first = _last = nullptr;
 
       val = true;
       this->_size--;
@@ -178,11 +207,11 @@ bool DoublyLinkedList<T>::removeLast()
     {
       NodeDoubly<T> *aux;
 
-      aux = last->prev;
-      last->prev = nullptr;
-      last = aux;
+      aux = _last->prev;
+      _last->prev = nullptr;
+      _last = aux;
       aux = aux->next;
-      last->next = nullptr;
+      _last->next = nullptr;
 
       delete aux;
       val = true;
@@ -193,7 +222,9 @@ bool DoublyLinkedList<T>::removeLast()
   return val;
 }
 
-// Remove the first element
+// 
+//  Remove the first element
+// 
 template <class T>
 bool DoublyLinkedList<T>::removeFirst()
 {
@@ -203,7 +234,7 @@ bool DoublyLinkedList<T>::removeFirst()
   {
     if (this->_size == 1)
     {
-      first = last = nullptr;
+      _first = _last = nullptr;
 
       val = true;
       this->_size--;
@@ -212,11 +243,11 @@ bool DoublyLinkedList<T>::removeFirst()
     {
       NodeDoubly<T> *aux;
 
-      aux = first->next;
-      first->next = nullptr;
-      first = aux;
+      aux = _first->next;
+      _first->next = nullptr;
+      _first = aux;
       aux = aux->prev;
-      first->prev = nullptr;
+      _first->prev = nullptr;
 
       delete aux;
       val = true;
@@ -227,6 +258,8 @@ bool DoublyLinkedList<T>::removeFirst()
   return val;
 }
 
-// Check if the list is empty
+// 
+//  Check if the list is empty
+// 
 template <class T>
 bool DoublyLinkedList<T>::isEmpty() { return this->_size == 0; }
