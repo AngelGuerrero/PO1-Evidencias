@@ -27,23 +27,23 @@ using namespace std;
 |-------------------------------------------------------------------
 */
 //		----- Screen -----
-#define SPANISH				std::locale::global(std::locale("spanish"))		// Show the tildes in spanish
-#define PAUSE				  system("pause")
-#define WAIT		      rlutil::msleep(2500)
-#define CLEAR	        system("cls")
-#define CENTER				rlutil::locate((rlutil::tcols() / 4), rlutil::trows() / 2)
-#define	JUSTIFIED			gotoxy((2),(trows() / 8))
-#define NORMAL_POS		rlutil::locate(0, 0);
-#define HIDE_CURSOR		rlutil::hidecursor()
-#define SHOW_CURSOR		rlutil::showcursor()
+#define SPANISH     std::locale::global(std::locale("spanish"))		// Show the tildes in spanish
+#define PAUSE       system("pause")
+#define WAIT        rlutil::msleep(2500)
+#define CLEAR       system("cls")
+#define CENTER      rlutil::locate((rlutil::tcols() / 4), rlutil::trows() / 2)
+#define	JUSTIFIED   gotoxy((2),(trows() / 8))
+#define NORMAL_POS  rlutil::locate(0, 0);
+#define HIDE_CURSOR rlutil::hidecursor()
+#define SHOW_CURSOR rlutil::showcursor()
 //		----- Colors -----
-#define RED			 rlutil::setColor(4)
-#define CYAN		 rlutil::setColor(rlutil::CYAN);
-#define GREEN		 rlutil::setColor(2)
-#define WHITE		 rlutil::setColor(15)
-#define YELLOW	 rlutil::setColor(14)
-#define MAGENTA	 rlutil::setColor(5)
-#define SKYBLUE	 rlutil::setColor(11)
+#define RED      rlutil::setColor(4)
+#define CYAN     rlutil::setColor(rlutil::CYAN);
+#define GREEN    rlutil::setColor(2)
+#define WHITE    rlutil::setColor(15)
+#define YELLOW   rlutil::setColor(14)
+#define MAGENTA  rlutil::setColor(5)
+#define SKYBLUE  rlutil::setColor(11)
 //		----- Keyboard definitions -----
 #define KEY_ZERO	  48
 #define	KEY_ONE		  49
