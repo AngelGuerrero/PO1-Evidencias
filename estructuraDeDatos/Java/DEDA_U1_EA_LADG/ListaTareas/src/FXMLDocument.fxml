@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+   <bottom>
+      <HBox spacing="4.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#completeTask" style="-fx-background-color: red; -fx-text-fill: white;" text="Eliminar" textAlignment="CENTER" />
+         </children>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Archivo">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Cerrar" />
+                     </items>
+                </Menu>
+                <Menu mnemonicParsing="false" onAction="#info" text="Ayuda">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Acerca de este programa" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox>
+               <children>
+                  <Label text="Nueva tarea: ">
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="13.0" /> 
+                     </font>
+                  </Label>
+                  <TextField id="#inputText" fx:id="inputTask" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#addNewTask" prefHeight="25.0" prefWidth="418.0" promptText="Aprender estructura de datos" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#addNewTask" style="-fx-background-color: green; -fx-text-fill: white;" text="Agregar">
+                     <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <ListView fx:id="listview" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
