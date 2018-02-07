@@ -10,7 +10,7 @@
 
 
 
-package tda;
+package conversion;
 
 public class DoublyLinkedList {
 
@@ -35,7 +35,7 @@ public class DoublyLinkedList {
   | Los siguientes son métodos pertenecientes a DoublyLinkedList
   |
   */
-  public boolean add(int data) {
+  public boolean add(char data) {
     boolean val = false;
 
     try
@@ -74,7 +74,7 @@ public class DoublyLinkedList {
    *
    * @return     boolean
    */
-  public boolean addFirst(int data)
+  public boolean addFirst(char data)
   {
     boolean val = false;
 
@@ -115,11 +115,12 @@ public class DoublyLinkedList {
    */
   public String show()
   {
-    String val = "";
+    String val = "Lista vacía";
 
-    if (size != 0)
+    if (!isEmpty())
     {
-      iterator = first;
+      Node iterator = first;
+      val = "";
 
       while (iterator != null)
       {
@@ -127,11 +128,7 @@ public class DoublyLinkedList {
         iterator = iterator.next;
       }
     }
-    else
-    {
-      val = "Lista vacía";
-    }
-
+    
     return val;
   }
 
@@ -146,9 +143,9 @@ public class DoublyLinkedList {
    */
   public String showReverse()
   {
-    String val = "";
+    String val = "Lista vacía";
 
-    if (size > 0)
+    if (! isEmpty())
     {
       iterator = last;
       while (iterator != null)
@@ -156,10 +153,6 @@ public class DoublyLinkedList {
         val += iterator.getData() + ", ";
         iterator = iterator.prev;
       }
-    }
-    else
-    {
-      val = "Lista vacía";
     }
 
     return val;
@@ -174,28 +167,26 @@ public class DoublyLinkedList {
    *
    * @return     String
    */
-  public String remove(int index)
+  public Boolean remove(int index)
   {
 
-    String val = "";
+    Boolean val = false;
 
-    if ( isEmpty() )
-    {
-      val = "Lista vacía";
-    }
-    else
+    if ( !isEmpty() )
     {
       if (index >= 1 && index <= size)
       {
         // Remove first element
         if (index == 0)
         {
-          val = removeFirst();
+          removeFirst();
+          val = true;
         }
         // Remove last element
         else if (index == size)
         {
-          val = removeLast();
+          val = true;
+          removeLast();
         }
         // Remove another element
         else
@@ -217,15 +208,19 @@ public class DoublyLinkedList {
           iterator.prev.next = iterator.next;
           iterator.next.prev = iterator.prev;
 
-          val = "Elemento: " + iterator.getData() + " eliminado";
+          // val = "Elemento: " + iterator.getData() + " eliminado";
           iterator = iterator.prev = iterator.next = null;
           size--;
         }
       }
       else
       {
-        val = "El índice no coincide con ningún elemento";
+        System.out.println("\"El índice no coincide con ningún elemento\"");
       }
+    }
+    else
+    {
+      System.out.println("La ista está vacía");
     }
 
     return val;
@@ -238,9 +233,9 @@ public class DoublyLinkedList {
 
    * @return String
    */
-  public String removeFirst()
+  public Boolean removeFirst()
   {
-    String val = "La lista está vacía";
+    Boolean val = false;
 
     if (!isEmpty())
     {
@@ -255,7 +250,7 @@ public class DoublyLinkedList {
         first.prev = null;
         temp = temp.next = null;
       }
-      val = "Elemento eliminado";
+      val = true;
       size--;
     }
 
@@ -269,9 +264,9 @@ public class DoublyLinkedList {
    *
    * @return String
    */
-  public String removeLast()
+  public Boolean removeLast()
   {
-    String val = "La lista está vacía";
+    Boolean val = false;
 
     if (!isEmpty())
     {
@@ -286,7 +281,7 @@ public class DoublyLinkedList {
         last.next = null;
         temp = temp.prev = null;
       }
-      val = "Elemento eliminado";
+      val = true;
       size--;
     }
 
@@ -301,9 +296,9 @@ public class DoublyLinkedList {
    *
    * @return String
    */
-  public String removeAll()
+  public Boolean removeAll()
   {
-    String val = "Lista vacía";
+    Boolean val = false;
 
     if (size > 0)
     {
@@ -313,7 +308,7 @@ public class DoublyLinkedList {
         last = last.prev;
       }
       size = 0;
-      val = "Lista eliminada";
+      val = true;
     }
 
     return val;
@@ -321,9 +316,9 @@ public class DoublyLinkedList {
 
   public int getSize() { return size; }
 
-  public int getFirst() { return first.getData(); }
+  public char getFirst() { return first.getData(); }
 
-  public int getLast() { return last.getData(); }
+  public char getLast() { return last.getData(); }
 
   public boolean isEmpty() { return size == 0; }
 
@@ -338,7 +333,7 @@ public class DoublyLinkedList {
   */
   private class Node {
     // Attributes
-    private int data;
+    private char data;
     public Node prev;
     public Node next;
 
@@ -349,7 +344,7 @@ public class DoublyLinkedList {
       this.next = null;
     }
 
-    public Node(int data, Node prev, Node next)
+    public Node(char data, Node prev, Node next)
     {
       this.data = data;
       this.prev = prev;
@@ -357,9 +352,9 @@ public class DoublyLinkedList {
     }
 
     // Node methods
-    public int getData() { return data; }
+    public char getData() { return data; }
 
-    public void setData(int data) { this.data = data; }
+    public void setData(char data) { this.data = data; }
   }
 
 }

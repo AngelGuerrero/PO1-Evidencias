@@ -10,15 +10,15 @@
 
 
 
-package tda;
+package conversion;
 
-public class Stack {
+public class MyStack {
   // Attributes
   private Node top;   // Obtiene el elemento de la cima
   private int size;   // Obtiene la longitud de la pila
 
   // Stack Constructor
-  public Stack()
+  public MyStack()
   {
     top = null;
     size = 0;
@@ -33,7 +33,7 @@ public class Stack {
    *
    * @return     boolean
    */
-  public boolean push(int data)
+  public boolean push(char data)
   {
     boolean val = false;
 
@@ -61,17 +61,17 @@ public class Stack {
    *
    * Específicamente el elemento de la cima
    *
-   * @return String     Devuelve el elemento que ha sacado
+   * @return char     Devuelve el elemento que ha sacado
    */
-  public String pop()
+  public char pop()
   {
-    String val = "Pila vacía";
+    char val = '\0';
 
     if ( size > 0 )
     {
       Node temp;
 
-      val = "Se ha sacado el elemento: " + top.getData();
+      val = top.getData();
       temp = top;
       top = top.next;
       size--;
@@ -83,7 +83,7 @@ public class Stack {
   /**
    * Muestra la pila
    *
-   * @return String     Devuelve el contenido de la pila
+   * @return char     Devuelve el contenido de la pila
    */
   public String show()
   {
@@ -95,26 +95,26 @@ public class Stack {
       Node iterator = top;
       while ( iterator != null )
       {
-        val += iterator.getData() + ",";
+        val += iterator.getData();
         iterator = iterator.next;
       }
     }
-
+    
     return val;
   }
 
   /**
    * Obtiene el elemento de la cima
    *
-   * @return String
+   * @return char
    */
-  public String getTop()
+  public char getTop()
   {
-    String val = "Pila vacía";
+    char val = '\0';
 
     if (!isEmpty())
     {
-      val = "El elemento de la cima es: " + top.getData();
+      val = top.getData();
     }
 
     return val;
@@ -123,18 +123,17 @@ public class Stack {
   /**
    * Elimina toda la lista
    *
-   * @return String Devuelve un mensaje si la lista ha sido eliminada
+   * @return char Devuelve un mensaje si la lista ha sido eliminada
    */
-  public String removeAll()
+  public char removeAll()
   {
-    String val = "Pila vacía";
+    char val = '\0';
 
     if ( !isEmpty() )
     {
-      val = "";
       while ( top != null )
       {
-        val += pop() + "\n";
+        val = pop();
       }
     }
 
@@ -156,18 +155,18 @@ public class Stack {
   */
   private class Node {
     // Attributes
-    private int data;
+    private char data;
     public Node next;
 
     // Node Constructor
-    public Node(int data)
+    public Node(char data)
     {
       this.data = data;
       this.next = null;
     }
 
-    public int getData() { return this.data; }
+    public char getData() { return this.data; }
 
-    public void setData(int data) { this.data = data; }
+    public void setData(char data) { this.data = data; }
   }
 }
