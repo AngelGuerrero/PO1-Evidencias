@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
    <bottom>
       <HBox spacing="4.0" BorderPane.alignment="CENTER">
          <children>
@@ -45,7 +50,7 @@
             </MenuBar>
             <HBox>
                <children>
-                  <Label text="Nueva tarea: ">
+                  <Label alignment="CENTER" maxHeight="-Infinity" prefHeight="25.0" text="Nueva tarea: ">
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin>
@@ -53,7 +58,7 @@
                         <Font size="13.0" /> 
                      </font>
                   </Label>
-                  <TextField id="#inputText" fx:id="inputTask" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#addNewTask" prefHeight="25.0" prefWidth="418.0" promptText="Aprender estructura de datos" HBox.hgrow="ALWAYS">
+                  <TextField id="#inputText" fx:id="inputTask" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" onAction="#addNewTask" promptText="Aprender estructura de datos" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin>

@@ -36,3 +36,6 @@ nbactions.xml
 
 
 # End of https://www.gitignore.io/api/java,netbeans
+/estructuraDeDatos/Java/DEDA_U1_EA_LADG/Hamburguesas/nbproject/private/
+/estructuraDeDatos/Java/DEDA_U1_EA_LADG/ListaTareas/build/
+/estructuraDeDatos/Java/DEDA_U1_EA_LADG/Hamburguesas/build/

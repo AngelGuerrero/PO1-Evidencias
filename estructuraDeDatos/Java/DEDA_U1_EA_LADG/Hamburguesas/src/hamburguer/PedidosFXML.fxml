@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -14,13 +19,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hamburguer.PedidosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hamburguer.PedidosController">
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
             <HBox spacing="5.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="102.0" text="Nombre del cliente" />
+                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="124.0" text="Nombre del cliente" textOverrun="WORD_ELLIPSIS" />
                   <TextField fx:id="inputNameClient" onKeyReleased="#prepareDataName" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
@@ -32,9 +37,9 @@
             </HBox>
             <HBox spacing="5.0">
                <children>
-                  <CheckBox fx:id="hambCheckB" mnemonicParsing="false" text="Hamburguesa sencilla" />
+                  <CheckBox fx:id="hambCheckB" alignment="BOTTOM_CENTER" mnemonicParsing="false" text="Hamburguesa sencilla" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label prefHeight="26.0" prefWidth="48.0" text="Cantidad" />
+                  <Label maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="72.0" text="Cantidad" textOverrun="WORD_ELLIPSIS" />
                   <ComboBox fx:id="hambComboB" disable="true" promptText="1" />
                </children>
                <padding>
@@ -43,9 +48,9 @@
             </HBox>
             <HBox spacing="5.0">
                <children>
-                  <CheckBox fx:id="sodaCheckB" mnemonicParsing="false" text="Refresco" />
+                  <CheckBox fx:id="sodaCheckB" alignment="BOTTOM_CENTER" mnemonicParsing="false" text="Refresco" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label prefHeight="26.0" prefWidth="48.0" text="Cantidad" />
+                  <Label prefHeight="26.0" prefWidth="67.0" text="Cantidad" />
                   <ComboBox fx:id="sodaComboB" disable="true" promptText="1" />
                </children>
                <VBox.margin>
