@@ -1,0 +1,1 @@
+# Programa para ejemplificar el uso de arreglos

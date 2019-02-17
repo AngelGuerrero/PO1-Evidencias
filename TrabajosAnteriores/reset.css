@@ -1,0 +1,6 @@
+html a:hover, a:focus {
+  color: inherit;
+}
+html p{
+  text-align: justify;
+}

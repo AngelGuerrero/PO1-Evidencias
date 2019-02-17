@@ -1,0 +1,35 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+nav{
+  height: auto;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+nav a{
+  padding: 10px;
+  flex-grow: 1;
+  text-align: center;
+  text-decoration: none;
+}
+nav a:hover{
+  background: rgb(26, 160, 175);
+  color: white;
+  text-decoration: none;
+}
+
+.activo{
+  background: rgb(26,160,175);
+  color: white;
+}
+
+.main-content{
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  
+}

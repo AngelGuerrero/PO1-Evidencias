@@ -1,0 +1,58 @@
+/***********************************************
+ * This is the style for the start of the site *
+ ***********************************************/
+@import url('animationStart.css');
+
+body{
+  background: #212121;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.startContainer{
+  color: rgb(190, 142, 232);
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.startContainer header{
+  font-family: 'Poiret One', cursive;
+  width: 100%;
+  text-align: center;
+}
+
+.startContainer ul{
+  width: 100vh;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.startContainer ul li{
+  font-family: Segoe UI;
+  font-size: 17px;
+  text-align: center;
+  padding: 15px;
+}
+.startContainer ul li:hover{
+}
+.startContainer a{
+  color: white;
+}
+.startContainer a:hover{
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 768px)
+{
+  .startContainer ul{
+    flex-direction: column;
+  }
+}
