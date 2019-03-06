@@ -8,11 +8,10 @@ namespace VentaBoletos
 {
     public class Boleto
     {
-        private double _precio;
         public double Precio
         {
-            get => _precio;
-            private set => _precio = value;
+            get;
+            private set;
         }
 
         public string Localidad
