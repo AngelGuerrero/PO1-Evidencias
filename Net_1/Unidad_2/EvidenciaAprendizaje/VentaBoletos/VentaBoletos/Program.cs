@@ -13,37 +13,36 @@ namespace VentaBoletos
         {
             Administrador administrador = new Administrador();
 
-            // Muestra la información de boletos y precios
-            administrador.ObtenerInformacionDeVenta();
+            administrador.MostrarInformacionDeVenta();
 
             // Validación hasta que el formato de entrada sea correcto
             bool error = true;
             string entrada = "";
-            bool respuesta = false;
+            bool respuestaAfirmativa = false;
             do
             {
                 try
                 {
                     Console.WriteLine("¿Desea realizar una compra? [s/n]");
                     entrada = Console.ReadLine();
-                    error = ValidarRespuesta(entrada, out respuesta);
+                    error = ValidarRespuesta(entrada, out respuestaAfirmativa);
                 }
                 catch (Exception)
                 {
                     Console.WriteLine($"Ingrese únicamente opciones disponibles");
                 }
 
-                if (respuesta)
+                if (respuestaAfirmativa)
                 {
                     Console.Write("\nIngrese el nombre de la localidad: ");
                     string localidad = Console.ReadLine();
-                    int boletos = 0;
+                    int cantidadBoletos = 0;
                     double total = 0.0;
 
                     try
                     {
                         Console.Write("\nIngrese la cantidad de boletos a comprar: ");
-                        boletos = int.Parse(Console.ReadLine());
+                        cantidadBoletos = int.Parse(Console.ReadLine());
                     }
                     catch (Exception e)
                     {
@@ -52,15 +51,20 @@ namespace VentaBoletos
                     }
 
                     // Hasta este punto todo ha ido correcto
-                    if (administrador.ComprarBoletoDeLocalidad(localidad.ToLower(), boletos, out total))
+                    if (administrador.ApartarBoleto(localidad.ToLower(), cantidadBoletos, out total))
                     {
-                        Console.WriteLine($"\n\tBoleto tipo: {localidad}\n\tCantidad: {boletos}\n");
+                        Console.WriteLine($"\n\tBoleto tipo: {localidad}\n\tCantidad: {cantidadBoletos}\n");
                         Console.WriteLine($"\tEl total a pagar es de: {total.ToString("C2")}\n");
                     }
                 }
                 else
                 {
-                    administrador.ObtenerInformacionDeVenta();
+                    if (!administrador.ConfirmarCompra())
+                    {
+                        Console.WriteLine("No se pudo efectuar la compra");
+                    }
+
+                    administrador.MostrarInformacionDeVenta();
                     break;
                 }
             } while (error);
@@ -73,15 +77,26 @@ namespace VentaBoletos
             bool retval = false;
             afirmativo = false;
 
-            if (Regex.Match(pRespuesta, @"[$sS$iIíÍ]").Success)
+            switch (pRespuesta)
             {
-                afirmativo = true;
-                retval = true;
-            }
-            else if (Regex.Match(pRespuesta, @"[$nNoO]").Success)
-            {
-                afirmativo = false;
-                retval = true;
+                case "s":
+                case "S":
+                case "si":
+                case "SI":
+                    afirmativo = true;
+                    retval = true;
+                    break;
+                case "n":
+                case "N":
+                case "no":
+                case "NO":
+                    afirmativo = false;
+                    retval = true;
+                    break;
+                default:
+                    afirmativo = false;
+                    retval = false;
+                    break;
             }
 
             return retval;
