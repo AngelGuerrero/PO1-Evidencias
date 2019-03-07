@@ -55,10 +55,10 @@ namespace VentaBoletos
         /// <param name="pCantidad">Cantidad de boletos que desea comprar</param>
         /// <param name="pTotal">Parámetro de salida, el cual es el total de ésta operación</param>
         /// <returns>Retorna true si la operación se ha efectuado correctamente.</returns>
-        public bool ApartarBoleto(string pLocalidad, int pCantidad, out double pTotal)
+        public bool ApartarBoleto(string pLocalidad, int pCantidad, ref double pTotal, ref string pMensaje)
         {
             bool retval = false;
-            pTotal = 0;
+
             Boleto boleto = null;
 
             try
@@ -74,7 +74,7 @@ namespace VentaBoletos
             }
             catch (Exception)
             {
-                Console.Write("\n\nYA NO EXISTEN BOLETOS DISPONIBLES PARA LA LOCALIDAD SELECCIONADA.\n\n");
+                pMensaje = "\n\n\tNO SE ENCONTRÓ LA LOCALIDAD SELECCIONADA, O YA NO EXISTEN ENTRADAS DISPONIBLES\n\n";
                 return false;
             }
 
@@ -199,6 +199,14 @@ namespace VentaBoletos
                                                       .Sum(item => (item.Key.Precio * item.Value));
 
 
+        /// <summary>
+        /// Obtiene el total de boletos vendidos
+        /// </summary>
+        /// <returns>Total de boletos vendidos</returns>
+        public int ObtenerBoletosVendidos() => Vendidos.Count;
+
+
+        
         /// <summary>
         /// Muestra únicamente la información de ventas
         /// </summary>

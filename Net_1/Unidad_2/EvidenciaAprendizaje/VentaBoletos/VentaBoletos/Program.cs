@@ -1,105 +1,130 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
+//
+// Programa para la simulación de venta de boletos
+// Autor: Luis Ángel De Santiago Guerrero
+// Semestre: Quinto semestre
+// Unidad 2, Evidencia de aprendizaje
+// Programación NET I
+// Docente: ELVIA SANCHEZ MAGADAN
+// Grupo: DS-DPRN1-1901-B1-002
+// Ingeniería en Desarrollo de Software
+//
 
 namespace VentaBoletos
 {
     class Program
     {
+        public delegate void DelFuncion();
+
+        public static Administrador administrador = new Administrador();
+
         static void Main(string[] args)
         {
-            Administrador administrador = new Administrador();
 
+            // Muestra la información de los boletos disponibles
             administrador.MostrarInformacionDeVenta();
 
-            // Validación hasta que el formato de entrada sea correcto
-            bool error = true;
-            string entrada = "";
-            bool respuestaAfirmativa = false;
-            do
-            {
-                try
-                {
-                    Console.WriteLine("¿Desea realizar una compra? [s/n]");
-                    entrada = Console.ReadLine();
-                    error = ValidarRespuesta(entrada, out respuestaAfirmativa);
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine($"Ingrese únicamente opciones disponibles");
-                }
-
-                if (respuestaAfirmativa)
-                {
-                    Console.Write("\nIngrese el nombre de la localidad: ");
-                    string localidad = Console.ReadLine();
-                    int cantidadBoletos = 0;
-                    double total = 0.0;
-
-                    try
-                    {
-                        Console.Write("\nIngrese la cantidad de boletos a comprar: ");
-                        cantidadBoletos = int.Parse(Console.ReadLine());
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine($"\n{e.Message}\n");
-                        error = true;
-                    }
-
-                    // Hasta este punto todo ha ido correcto
-                    if (administrador.ApartarBoleto(localidad.ToLower(), cantidadBoletos, out total))
-                    {
-                        Console.WriteLine($"\n\tBoleto tipo: {localidad}\n\tCantidad: {cantidadBoletos}\n");
-                        Console.WriteLine($"\tEl total a pagar es de: {total.ToString("C2")}\n");
-                    }
-                }
-                else
-                {
-                    if (!administrador.ConfirmarCompra())
-                    {
-                        Console.WriteLine("No se pudo efectuar la compra");
-                    }
-
-                    administrador.MostrarInformacionDeVenta();
-                    break;
-                }
-            } while (error);
+            // Si es afirmativo va a la fución ComprarBoleto
+            // si es negativa entonces llama la función confirmarCompra
+            ModalPregunta("¿Desea realizar una compra? [s/n]: ", ComprarBoleto, ConfirmarCompra);
 
             Console.ReadLine();
         }
 
-        private static bool ValidarRespuesta(string pRespuesta, out bool afirmativo)
-        {
-            bool retval = false;
-            afirmativo = false;
 
-            switch (pRespuesta)
+        /// <summary>
+        /// Función modal para validar únicamente respuestas de si o no
+        /// de acuerdo a ello, llama a las funciones que se le pasan como parámetros
+        /// </summary>
+        /// <param name="pPregunta">Pregunta que se desea realizar</param>
+        /// <param name="pCallback1">Función que se ejecuta si la respuesta es afirmativa"/></param>
+        /// <param name="pCallback2">Función que se ejecuta si la respuesta es negativa</param>
+        private static void ModalPregunta(string pPregunta, DelFuncion pCallback1, DelFuncion pCallback2 = null)
+        {
+            Console.Write(pPregunta);
+            switch (Console.ReadLine())
             {
                 case "s":
                 case "S":
                 case "si":
                 case "SI":
-                    afirmativo = true;
-                    retval = true;
+                    if (pCallback1 != null)
+                    {
+                        pCallback1();
+                    }
                     break;
                 case "n":
                 case "N":
                 case "no":
                 case "NO":
-                    afirmativo = false;
-                    retval = true;
+                    if (pCallback2 != null)
+                    {
+                        pCallback2();
+                    }
                     break;
                 default:
-                    afirmativo = false;
-                    retval = false;
+                    ModalPregunta(pPregunta, pCallback1, pCallback2);
                     break;
             }
+        }
 
-            return retval;
+
+        /// <summary>
+        /// Función vacía para controlar el flujo de trabajo para el usuario
+        /// en esta etapa es donde seleccionará el boleto a comprar
+        /// </summary>
+        public static void ComprarBoleto()
+        {
+            Console.Write("\nIngrese el nombre de la localidad: ");
+            string localidad = Console.ReadLine();
+
+            int cantidadBoletos = 0;
+
+            bool ioError = false;
+
+            try
+            {
+                Console.Write("\nIngrese la cantidad de boletos a comprar: ");
+                cantidadBoletos = int.Parse(Console.ReadLine());
+            }
+            catch (Exception e)
+            {
+                ioError = true;
+                Console.WriteLine($"\n{e.Message}\n");
+            }
+
+            if (ioError)
+            {
+                ComprarBoleto();
+            }
+
+            // Procede a cargar los articulos a su carrito
+            double total = 0.0;
+            string mensaje = "";
+            if (administrador.ApartarBoleto(localidad.ToLower(), cantidadBoletos, ref total, ref mensaje))
+            {
+                Console.WriteLine($"\n\tBoleto tipo: {localidad}\n\tCantidad: {cantidadBoletos}\n");
+                Console.WriteLine($"\tEl total a pagar es de: {total.ToString("C2")}\n");
+                Console.WriteLine("------------------------------------------------------------------------\n");
+            }
+            else
+            {
+                Console.WriteLine(mensaje);
+            }
+
+            Main(null);
+        }
+
+
+        /// <summary>
+        /// Función vacía para controlar el flujo de trabajo para el usuario
+        /// en esta etapa el usuario confirma o no la transacción de la compra
+        /// </summary>
+        public static void ConfirmarCompra()
+        {
+            ModalPregunta("¿Desea confirmar la transacción? [s/n]: ", () => { administrador.ConfirmarCompra();
+                                                                              administrador.MostrarInformacionDeVenta(); });
         }
     }
 }
