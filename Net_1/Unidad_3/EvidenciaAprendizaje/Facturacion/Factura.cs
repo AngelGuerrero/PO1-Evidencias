@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,21 +11,29 @@ namespace Facturacion
     {
         private string NumeroPieza { get; set; }
 
+
         private string DescripcionPieza { get; set; }
+
 
         private int CantidadArticulosCompra { get; set; }
 
+
         public double PrecioArticulo { get; private set; }
 
-        public Producto producto { get; private set; }
 
-
+        /// <summary>
+        /// Al crearse una factura solicita se cree
+        /// un producto, al crearse el producto, se
+        /// toman los datos de éste para usarlos
+        /// dentro de la clase Factura.
+        /// </summary>
+        /// <param name="pProducto">Producto a facturar</param>
+        /// <param name="pCantidad">Cantidad de productos a comprar</param>
         public Factura(Producto pProducto, int pCantidad)
         {
-            producto = producto;
-            NumeroPieza = producto.Id;
-            PrecioArticulo = producto.Precio;
-            DescripcionPieza = producto.Descripcion;
+            NumeroPieza = pProducto.Id;
+            PrecioArticulo = pProducto.Precio;
+            DescripcionPieza = pProducto.Descripcion;
 
             CantidadArticulosCompra = pCantidad;
         }
@@ -34,6 +43,7 @@ namespace Facturacion
         /// <summary>
         /// Devuelve la cantidad de productos a comprar
         /// </summary>
+        /// 
         /// <returns></returns>
         public int PedirCompra() => CantidadArticulosCompra;
 
@@ -49,7 +59,8 @@ namespace Facturacion
         /// establecerse en 0, si el precio por artículo 
         /// no es positivo debe establecerlo en 0.0
         /// </summary>
-        /// <returns></returns>
+        /// 
+        /// <returns>Devuelve el monto de la factura</returns>
         public double CalculoFactura()
         {
             double montoFactura = CantidadArticulosCompra * PrecioArticulo;
@@ -72,6 +83,18 @@ namespace Facturacion
         /// Devuelve la información del objecto producto
         /// </summary>
         /// <returns></returns>
-        public Producto MostrarInformacion() => producto;
+        public void MostrarInformacion()
+        {
+            Console.WriteLine("\n");
+            Console.WriteLine($"----INFORMACIÓN DEL ARTÍCULO----");
+            Console.WriteLine($"Id del producto {NumeroPieza}");
+            Console.WriteLine($"Descripción: {DescripcionPieza}");
+            Console.WriteLine($"Precio: ${PrecioArticulo.ToString("F")}");
+            Console.WriteLine($"--------------------------------");
+            Console.WriteLine($"Cantidad de artículos: {PedirCompra()}");
+            Console.WriteLine($"Monto de la factura: ${CalculoFactura().ToString("F")}");
+            Console.WriteLine($"--------------------------------");
+            Console.WriteLine("\n");
+        }
     }
 }
