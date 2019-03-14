@@ -80,6 +80,7 @@
             Console.WriteLine($"Título: {Titulo}");
             Console.WriteLine($"Autor: {Autor}");
             Console.WriteLine($"Ejemplares disponibles: {Ejemplares}");
+            Console.WriteLine($"Ejemplares prestados: {EjemplaresPrestados}");
             System.Console.WriteLine("------------------------------------------------\n\n");
         }
 
