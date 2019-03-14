@@ -39,6 +39,8 @@
             MujerQueSabeLatin.Devolucion();
             MujerQueSabeLatin.Devolucion();
 
+            MujerQueSabeLatin.Datos();
+
             System.Console.ReadLine();
         }
     }
