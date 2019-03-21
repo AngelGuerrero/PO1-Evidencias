@@ -11,11 +11,11 @@ namespace Facturacion
     {
         public string Id { get; private set; }
 
-        public string Nombre { get; private set; }
+        public string Nombre { get; set; }
 
-        public double Precio { get; private set; }
+        public double Precio { get; set; }
 
-        public string Descripcion { get; private set; }
+        public string Descripcion { get; set; }
 
         private Random rand = new Random();
 
@@ -27,6 +27,8 @@ namespace Facturacion
             Precio = pPrecio;
             Descripcion = pDescripcion;
         }
+
+        public Producto() { }
 
 
 
